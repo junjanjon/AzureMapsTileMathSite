@@ -81,16 +81,30 @@
             float:left;
             width:250px;
         }
+
+        ul.root > li {
+            color: #2d8fdd;
+            border-left: solid 6px #2d8fdd;/*左側の線*/
+            background: #f1f8ff;/*背景色*/
+            margin-bottom: 3px;/*下のバーとの余白*/
+            line-height: 1.5;
+            padding: 0.5em;
+            list-style-type: none!important;/*ポチ消す*/
+        }
+
+        ul.inner > li {
+            list-style-type: none!important;/*ポチ消す*/
+        }
     </style>
 </head>
 <body>
-<ul>
+<ul class="root">
     <li>
         <label for="zoomLevel">Zoom Level</label><input type="number" id="zoomLevel" value="12" />
     </li>
     <li>
         <form onsubmit="convertFromLatLon();return false">
-            <ul>
+            <ul class="inner">
                 <li>
                     <label for="longitude">X / 経度 / longitude</label><input type="number" id="longitude" value="139.70" step="0.0001" />
                 </li>
@@ -103,7 +117,7 @@
     </li>
     <li>
         <form onsubmit="convertFromTile();return false">
-            <ul>
+            <ul class="inner">
                 <li>
                     <label for="tileX">TileX</label><input type="number" id="tileX" value="3637" />
                 </li>
@@ -116,8 +130,12 @@
     </li>
     <li>
         <form onsubmit="convertFromQuadKey();return false">
-            <label for="quadkey">quadkey</label><input type="number" id="quadkey" value="133002112301" />
-            <button type="submit" class="btn btn-primary">Convert From Quadkey</button>
+            <ul class="inner">
+                <li>
+                    <label for="quadkey">quadkey</label><input type="number" id="quadkey" value="133002112301" />
+                    <button type="submit" class="btn btn-primary">Convert From Quadkey</button>
+                </li>
+            </ul>
         </form>
     </li>
     <li>
