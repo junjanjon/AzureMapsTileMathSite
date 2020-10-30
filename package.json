@@ -1,0 +1,10 @@
+{
+  "name": "AzureMapsTileMathSite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "junki.hiroi <junki.hiroi@drecom.co.jp>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
