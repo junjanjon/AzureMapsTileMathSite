@@ -24,6 +24,7 @@
             setInputValue("tileY", tile.tileY);
             const quadkey = AzureMaps.TileMath.TileXYToQuadKey(tile.tileX, tile.tileY, zoomLevel);
             setInputValue("quadkey", quadkey);
+            setImage();
         }
 
         const convertFromTile = function()
@@ -40,6 +41,7 @@
             setInputValue("latitude", orgRound(centerY, 4));
             const quadkey = AzureMaps.TileMath.TileXYToQuadKey(tile.tileX, tile.tileY, zoomLevel);
             setInputValue("quadkey", quadkey);
+            setImage();
         }
 
         const convertFromQuadKey = function()
@@ -54,6 +56,20 @@
             const centerY = (boundingBox[1] + boundingBox[3]) / 2;
             setInputValue("longitude", orgRound(centerX, 4));
             setInputValue("latitude", orgRound(centerY, 4));
+            setImage();
+        }
+
+        const setImage = function()
+        {
+            const zoomLevel = getInputValue("zoomLevel");
+            const tile = {
+                tileX: getInputValue("tileX"),
+                tileY: getInputValue("tileY")
+            };
+            const imageUrl = `https://tile.openstreetmap.org/${zoomLevel}/${tile.tileX}/${tile.tileY}.png`;
+            document.getElementById("imageSrc").src = imageUrl;
+            document.getElementById("imageUrl").href = imageUrl;
+            document.getElementById("imageUrl").text = imageUrl;
         }
     </script>
     <script type="text/javascript" src="scripts/TileMath.js"></script>
@@ -106,6 +122,14 @@
             <label for="quadkey">quadkey</label><input type="number" id="quadkey" value="133002112301" />
             <button type="submit" class="btn btn-primary">Convert</button>
         </form>
+    </li>
+    <li>
+        <div>
+            <img id="imageSrc" src="https://tile.openstreetmap.org/12/3637/1612.png"><br />
+            <p>
+                <a id="imageUrl" href="https://tile.openstreetmap.org/12/3637/1612.png">https://tile.openstreetmap.org/12/3637/1612.png</a>
+            </p>
+        </div>
     </li>
 </ul>
 </body>
