@@ -7,8 +7,54 @@
     <script type="text/javascript" src="scripts/TileMath.js"></script>
     <title>AzureMapsTileMathSite</title>
     <style>
+        label
+        {
+            display:block;
+            float:left;
+            width:250px;
+        }
     </style>
 </head>
 <body>
+<ul>
+    <li>
+        <form onsubmit="setZoomLevel();return false">
+            <label for="zoomLevel">Zoom Level</label><input type="number" id="zoomLevel" value="17" />
+            <button type="submit" class="btn btn-primary">Set ZoomLevel</button>
+        </form>
+    </li>
+    <li>
+        <form onsubmit="convertFromLatLon();return false">
+            <ul>
+                <li>
+                    <label for="longitude">X / 経度 / longitude</label><input type="number" id="longitude" value="139.70" step="0.01" />
+                </li>
+                <li>
+                    <label for="latitude">Y / 緯度 / latitude</label><input type="number" id="latitude" value="35.68" step="0.01" />
+                </li>
+            </ul>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+    </li>
+    <li>
+        <form onsubmit="convertFromTile();return false">
+            <ul>
+                <li>
+                    <label for="tileX">TileX</label><input type="number" id="tileX" value="3637" />
+                </li>
+                <li>
+                    <label for="tileY">TileY</label><input type="number" id="tileY" value="1612" />
+                </li>
+            </ul>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+    </li>
+    <li>
+        <form onsubmit="convertFromQuadKey();return false">
+            <label for="quadkey">quadkey</label><input type="number" id="quadkey" value="17" />
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+    </li>
+</ul>
 </body>
 </html>
