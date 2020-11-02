@@ -47,11 +47,12 @@
 
         const convertFromQuadKey = function()
         {
-            const zoomLevel = getInputValue("zoomLevel");
             const quadkey = document.getElementById("quadkey").value;
             const tile = AzureMaps.TileMath.QuadKeyToTileXY(quadkey);
             setInputValue("tileX", tile.tileX);
             setInputValue("tileY", tile.tileY);
+            setInputValue("zoomLevel", tile.zoom);
+            const zoomLevel = tile.zoom;
             const boundingBox = AzureMaps.TileMath.TileXYToBoundingBox(tile.tileX, tile.tileY, zoomLevel, 256);
             const centerX = (boundingBox[0] + boundingBox[2]) / 2;
             const centerY = (boundingBox[1] + boundingBox[3]) / 2;
