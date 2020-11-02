@@ -71,6 +71,11 @@
             document.getElementById("imageSrc").src = imageUrl;
             document.getElementById("imageUrl").href = imageUrl;
             document.getElementById("imageUrl").text = imageUrl;
+            const boundingBox = AzureMaps.TileMath.TileXYToBoundingBox(tile.tileX, tile.tileY, zoomLevel, 256);
+            setInputValue("longitudeWest", boundingBox[0]);
+            setInputValue("longitudeEast", boundingBox[2]);
+            setInputValue("latitudeSouth", boundingBox[1]);
+            setInputValue("latitudeNorth", boundingBox[3]);
         }
     </script>
     <script type="text/javascript" src="scripts/TileMath.js"></script>
@@ -142,6 +147,14 @@
     <li>
         <div>
             <img id="imageSrc" src="https://tile.openstreetmap.org/12/3637/1612.png"><br />
+            <ul class="inner">
+                <li>
+                    <label>X / 経度 / longitude</label><input type="number" id="longitudeWest" value="139.658203125" readonly />〜<input type="number" id="longitudeEast" value="139.74609375" readonly />
+                </li>
+                <li>
+                    <label>Y / 緯度 / latitude</label><input type="number" id="latitudeSouth" value="35.675147436084664" readonly />〜<input type="number" id="latitudeNorth" value="35.7465122599185" readonly />
+                </li>
+            </ul>
             <p>
                 <a id="imageUrl" href="https://tile.openstreetmap.org/12/3637/1612.png">https://tile.openstreetmap.org/12/3637/1612.png</a>
             </p>
