@@ -126,10 +126,10 @@
         <form onsubmit="convertFromTile();return false">
             <ul class="inner">
                 <li>
-                    <label for="tileX">TileX</label><input type="number" id="tileX" value="3637" />
+                    <label for="tileX">TileX</label><input type="number" id="tileX" value="3637" onchange="convertFromTile()" />
                 </li>
                 <li>
-                    <label for="tileY">TileY</label><input type="number" id="tileY" value="1612" />
+                    <label for="tileY">TileY</label><input type="number" id="tileY" value="1612" onchange="convertFromTile()" />
                     <button type="submit" class="btn btn-primary">Convert From Tile</button>
                 </li>
             </ul>
