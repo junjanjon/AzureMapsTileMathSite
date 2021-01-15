@@ -188,9 +188,11 @@ function getParam(name, url) {
 }
 
 // URL から quadkey を反映する。
-const quadkeyByQuery = getParam('quadkey')
-setInputValue("quadkey", quadkeyByQuery);
-convertFromQuadKey();
+const quadkeyByQuery = getParam('quadkey');
+if (!!quadkeyByQuery) {
+    setInputValue("quadkey", quadkeyByQuery);
+    convertFromQuadKey();
+}
 </script>
 </body>
 </html>
