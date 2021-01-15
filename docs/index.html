@@ -77,6 +77,9 @@
             setInputValue("longitudeEast", boundingBox[2]);
             setInputValue("latitudeSouth", boundingBox[1]);
             setInputValue("latitudeNorth", boundingBox[3]);
+            // URL を表示している quadkey のものに変更する。
+            const newUrl = `${location.protocol}//${location.host}${location.pathname}?quadkey=${getInputValue("quadkey")}`;
+            window.history.replaceState( {} , window.document.title, newUrl);
         }
     </script>
     <script type="text/javascript" src="scripts/TileMath.js"></script>
@@ -167,5 +170,27 @@
 <div>
     <p><img id="imageSrc" src="images/GitHub-Mark-32px.png"> <a href="https://github.com/junjanjon/AzureMapsTileMathSite">https://github.com/junjanjon/AzureMapsTileMathSite</a></p>
 </div>
+<script>
+/**
+ * Get the URL parameter value
+ *
+ * @param  name {string} パラメータのキー文字列
+ * @return  url {url} 対象のURL文字列（任意）
+ */
+function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// URL から quadkey を反映する。
+const quadkeyByQuery = getParam('quadkey')
+setInputValue("quadkey", quadkeyByQuery);
+convertFromQuadKey();
+</script>
 </body>
 </html>
