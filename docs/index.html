@@ -68,10 +68,17 @@
                 tileX: getInputValue("tileX"),
                 tileY: getInputValue("tileY")
             };
+            const position = {
+                longitude: getInputValue("longitude"),
+                latitude: getInputValue("latitude")
+            };
             const imageUrl = `https://tile.openstreetmap.org/${zoomLevel}/${tile.tileX}/${tile.tileY}.png`;
             document.getElementById("imageSrc").src = imageUrl;
             document.getElementById("imageUrl").href = imageUrl;
             document.getElementById("imageUrl").text = imageUrl;
+            const osmUrl = `https://www.openstreetmap.org/#map=${zoomLevel}/${position.latitude}/${position.longitude}`;
+            document.getElementById("osmUrl").href = osmUrl;
+            document.getElementById("osmUrl").text = osmUrl;
             const boundingBox = AzureMaps.TileMath.TileXYToBoundingBox(tile.tileX, tile.tileY, zoomLevel, 256);
             setInputValue("longitudeWest", boundingBox[0]);
             setInputValue("longitudeEast", boundingBox[2]);
@@ -80,6 +87,8 @@
             // URL を表示している quadkey のものに変更する。
             const newUrl = `${location.protocol}//${location.host}${location.pathname}?quadkey=${getInputValue("quadkey")}`;
             window.history.replaceState( {} , window.document.title, newUrl);
+            
+
         }
     </script>
     <script type="text/javascript" src="scripts/TileMath.js"></script>
@@ -164,6 +173,10 @@
                 <a id="imageUrl" href="https://tile.openstreetmap.org/12/3637/1612.png">https://tile.openstreetmap.org/12/3637/1612.png</a>
             </p>
             <p>https://tile.openstreetmap.org/{zoomLevel}/{tileX}/{tileY}.png</p>
+            <p>
+                <a id="osmUrl" href="https://www.openstreetmap.org/#map=12/35.68/139.70">https://www.openstreetmap.org/#map=12/35.68/139.70</a>
+            </p>
+            <p>https://www.openstreetmap.org/#map={zoomLevel}/{latitude}/{longitude}</p>
         </div>
     </li>
 </ul>
