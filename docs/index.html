@@ -87,8 +87,12 @@
             // URL を表示している quadkey のものに変更する。
             const newUrl = `${location.protocol}//${location.host}${location.pathname}?quadkey=${getInputValue("quadkey")}`;
             window.history.replaceState( {} , window.document.title, newUrl);
-            
 
+            document.getElementById("area_query").value =
+                "ST_SetSRID(ST_MakeBox2D(\n" +
+                `  ST_Point(${boundingBox[0]}, ${boundingBox[1]}),\n` +
+                `  ST_POINT(${boundingBox[2]}, ${boundingBox[3]})\n` +
+                "), 4326)";
         }
     </script>
     <script type="text/javascript" src="scripts/TileMath.js"></script>
@@ -168,6 +172,16 @@
                 <li>
                     <label>Y / 緯度 / latitude</label><input type="number" id="latitudeSouth" value="35.675147436084664" readonly />〜<input type="number" id="latitudeNorth" value="35.7465122599185" readonly />
                 </li>
+                <li>
+                    <label>Query for PostGIS</label>
+                    <textarea id="area_query" rows="4" style="width: 100%">
+ST_SetSRID(ST_MakeBox2D(
+  ST_Point(139.658203125, 35.7465122599185),
+  ST_POINT(139.74609375, 35.7465122599185)
+), 4326)
+                    </textarea>
+                    <button id="area_query_copy" class="btn">Query Copy</button>
+                </li>
             </ul>
             <p>
                 <a id="imageUrl" href="https://tile.openstreetmap.org/12/3637/1612.png">https://tile.openstreetmap.org/12/3637/1612.png</a>
@@ -183,6 +197,7 @@
 <div>
     <p><img src="images/GitHub-Mark-32px.png"> <a href="https://github.com/junjanjon/AzureMapsTileMathSite">https://github.com/junjanjon/AzureMapsTileMathSite</a></p>
 </div>
+<script src="https://riversun.github.io/jsframe/jsframe.js"></script>
 <script>
 /**
  * Get the URL parameter value
@@ -206,6 +221,16 @@ if (!!quadkeyByQuery) {
     setInputValue("quadkey", quadkeyByQuery);
     convertFromQuadKey();
 }
+
+document.getElementById('area_query_copy').onclick = () => {
+    const text = document.getElementById('area_query').value;
+    navigator.clipboard.writeText(text).then(e => {
+        const jsFrame = new JSFrame();
+        jsFrame.showToast({
+            html: 'コピーできました', align: 'top', duration: 2000
+        });
+    });
+};
 </script>
 </body>
 </html>
