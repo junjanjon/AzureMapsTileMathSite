@@ -91,7 +91,7 @@
             document.getElementById("area_query").value =
                 "ST_SetSRID(ST_MakeBox2D(\n" +
                 `  ST_Point(${boundingBox[0]}, ${boundingBox[1]}),\n` +
-                `  ST_POINT(${boundingBox[2]}, ${boundingBox[3]})\n` +
+                `  ST_Point(${boundingBox[2]}, ${boundingBox[3]})\n` +
                 "), 4326)";
         }
     </script>
