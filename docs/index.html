@@ -45,6 +45,13 @@
             setImage();
         }
 
+        const moveTile = function (dx, dy)
+        {
+            setInputValue("tileX", getInputValue("tileX") + dx);
+            setInputValue("tileY", getInputValue("tileY") + dy);
+            convertFromTile();
+        };
+
         const convertFromQuadKey = function()
         {
             const quadkey = document.getElementById("quadkey").value;
@@ -165,6 +172,12 @@
     <li>
         <div>
             <img id="imageSrc" src="https://tile.openstreetmap.org/12/3637/1612.png"><br />
+            <div>
+                <input type="button" id="moveLeft" value="←" onclick="moveTile(-1, 0);" />
+                <input type="button" id="moveRight" value="→" onclick="moveTile(+1, 0);" />
+                <input type="button" id="moveUp" value="↑" onclick="moveTile(0, -1);" />
+                <input type="button" id="moveDown" value="↓" onclick="moveTile(0, +1);" />
+            </div>
             <p>Base map and data from OpenStreetMap and OpenStreetMap Foundation</p>
             <ul class="inner">
                 <li>
