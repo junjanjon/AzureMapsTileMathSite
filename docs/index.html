@@ -97,8 +97,8 @@
 
             document.getElementById("area_query").value =
                 "ST_SetSRID(ST_MakeBox2D(\n" +
-                `  ST_Point(${boundingBox[0]}, ${boundingBox[1]}),\n` +
-                `  ST_Point(${boundingBox[2]}, ${boundingBox[3]})\n` +
+                `  'POINT(${boundingBox[0]} ${boundingBox[1]})'::geometry,\n` +
+                `  'POINT(${boundingBox[2]} ${boundingBox[3]})'::geometry\n` +
                 "), 4326)";
         }
     </script>
@@ -190,8 +190,8 @@
                     <label>Query for PostGIS</label>
                     <textarea id="area_query" rows="4" style="width: 100%">
 ST_SetSRID(ST_MakeBox2D(
-  ST_Point(139.658203125, 35.7465122599185),
-  ST_Point(139.74609375, 35.7465122599185)
+  'POINT(139.658203125 35.675147436084664)'::geometry,
+  'POINT(139.74609375 35.7465122599185)'::geometry
 ), 4326)
                     </textarea>
                     <button id="area_query_copy" class="btn">Query Copy</button>
